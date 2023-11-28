@@ -11,7 +11,7 @@ import {getFontFamily} from './assets/fonts/helper';
 import Title from './components/Title/Title';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faEnvelope} from '@fortawesome/free-solid-svg-icons/faEnvelope';
-import globalStyle from './assets/fonts/styles/globalStyle';
+import globalStyle from './styles/globalStyle';
 import UserStory from './components/userStory/userStory';
 import UserPost from './components/UserPost/UserPost';
 

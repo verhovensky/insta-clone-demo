@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {getFontFamily} from '../helper';
+import {getFontFamily} from '../assets/fonts/helper';
 
 // TODO move to other module
 
