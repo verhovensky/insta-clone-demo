@@ -37,6 +37,7 @@ const style = StyleSheet.create({
     resizeMode: 'cover',
     justifyContent: 'center',
     alignItems: 'center',
+    borderRadius: horizontalScale(10),
     marginTop: horizontalScale(20),
   },
   AttributesContainer: {
