@@ -17,7 +17,7 @@ const style = StyleSheet.create({
     fontFamily: getFontFamily('Inter', '500'),
     fontSize: scalefontSize(14),
     color: '#022150',
-    marginTop: verticalScale(15),
+    marginTop: verticalScale(8),
     textAlign: 'center',
   },
 });
