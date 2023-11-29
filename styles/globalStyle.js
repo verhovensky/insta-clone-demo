@@ -1,45 +1,45 @@
 import {StyleSheet} from 'react-native';
 import {getFontFamily} from '../assets/fonts/helper';
-
-// TODO move to other module
+import {horizontalScale, verticalScale, scalefontSize} from '../styles/scaling';
 
 const globalStyle = StyleSheet.create({
   header: {
-    marginLeft: 27,
-    marginRight: 17,
-    marginTop: 30,
+    marginLeft: verticalScale(27),
+    marginRight: verticalScale(17),
+    marginTop: horizontalScale(30),
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
   },
   icon: {
-    padding: 12,
-    borderRadius: 100,
+    padding: horizontalScale(12),
+    borderRadius: horizontalScale(100),
     backgroundColor: '#F2F2F2',
   },
   iconNumberContainer: {
     position: 'absolute',
-    right: 10,
-    top: 12,
+    right: horizontalScale(8),
+    top: verticalScale(10),
     backgroundColor: '#F35BAC',
-    borderRadius: 10,
+    borderRadius: horizontalScale(10),
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
-    width: 10,
-    height: 10,
+    width: horizontalScale(10),
+    height: horizontalScale(10),
   },
   messageNumber: {
     color: '#FFFFFF',
     fontFamily: getFontFamily('Inter', '600'),
-    fontSize: 6,
+    fontSize: scalefontSize(6),
   },
   userStoriesContainer: {
-    marginTop: 20,
-    marginHorizontal: 26,
+    marginTop: verticalScale(20),
+    marginBottom: verticalScale(20),
+    marginHorizontal: horizontalScale(26),
   },
   userPostsContainer: {
-    marginHorizontal: 24,
+    marginHorizontal: horizontalScale(24),
   },
 });
 

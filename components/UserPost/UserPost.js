@@ -10,6 +10,7 @@ import {
   faMessage,
 } from '@fortawesome/free-solid-svg-icons';
 import style from './style';
+import {horizontalScale} from '../../styles/scaling';
 
 // For local development profileImage={require('../../assets/images/rm.jpg')}
 
@@ -20,7 +21,7 @@ const UserPost = props => {
         <View style={style.userContentContainer}>
           <UserProfileImage
             profileImage={require('../../assets/images/default_profile.png')}
-            imageDimensions={30}
+            imageDimensions={horizontalScale(30)}
           />
           <View style={style.userTextContainer}>
             <Text style={style.userName}>
@@ -40,17 +41,14 @@ const UserPost = props => {
         <View style={style.likeContainer}>
           <FontAwesomeIcon icon={faHeart} size={24} color="#79869F" />
           <Text style={style.AttributeText}>{props.likes}</Text>
-          <Text style={style.AttributeText}>Likes</Text>
         </View>
         <View style={style.commentContainer}>
           <FontAwesomeIcon icon={faMessage} size={24} color="#79869F" />
           <Text style={style.AttributeText}>{props.comments}</Text>
-          <Text style={style.AttributeText}>Comments</Text>
         </View>
         <View style={style.bookmarkContainer}>
           <FontAwesomeIcon icon={faBookmark} size={24} color="#79869F" />
           <Text style={style.AttributeText}>{props.bookmarks}</Text>
-          <Text style={style.AttributeText}>Bookmarks</Text>
         </View>
       </View>
     </View>
