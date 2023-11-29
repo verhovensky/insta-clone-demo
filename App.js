@@ -8,7 +8,7 @@ import {
   View,
   StatusBar,
 } from 'react-native';
-import {getFontFamily} from './assets/fonts/helper';
+import {NavigationContainer} from '@react-navigation/native';
 import Title from './components/Title/Title';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faEnvelope} from '@fortawesome/free-solid-svg-icons/faEnvelope';
@@ -161,99 +161,105 @@ const App = () => {
   ];
 
   return (
-    <SafeAreaView>
-      <StatusBar backgroundColor="black" barStyle="light-content" />
-      <FlatList
-        ListHeaderComponent={
-          <>
-            <View style={globalStyle.header}>
-              <Title title={`Let's explore`} />
-              <TouchableOpacity style={globalStyle.icon}>
-                <FontAwesomeIcon icon={faEnvelope} size={24} color="#898DAE" />
-                <View style={globalStyle.iconNumberContainer}>
-                  <Text style={globalStyle.messageNumber}>2</Text>
-                </View>
-              </TouchableOpacity>
-            </View>
-            <View style={globalStyle.userStoriesContainer}>
-              <FlatList
-                onEndReachedThreshold={0.9}
-                horizontal={true}
-                keyExtractor={(item, index) => String(index)}
-                showsHorizontalScrollIndicator={false}
-                data={UserStoriesRenderedData}
-                onEndReached={() => {
-                  // TODO: Move to separate function
-                  console.log(
-                    `STORIES REACHED END DATA ${UserStoriesRenderedData.length}`,
-                  );
-                  if (isLoadingUserStories) {
-                    console.log('Already loading');
-                    return;
-                  }
-                  setIsLoadingUserStories(true);
-                  const newData = pagination(
-                    userStories,
-                    page + 1,
-                    userStoriesPageSize,
-                  );
-                  console.log(`newData.length = ${newData.length}`);
-                  if (newData.length > 0) {
-                    console.log(`Got some data: ${newData.length}`);
-                    setPage(page + 1);
-                    setUserStoriesRenderedData(prev => [...prev, ...newData]);
-                  }
-                  setIsLoadingUserStories(false);
-                }}
-                renderItem={({item}) => (
-                  <UserStory
-                    firstName={item.firstName}
-                    profileImage={item.profileImage}
+    <NavigationContainer>
+      <SafeAreaView>
+        <StatusBar backgroundColor="black" barStyle="light-content" />
+        <FlatList
+          ListHeaderComponent={
+            <>
+              <View style={globalStyle.header}>
+                <Title title={`Let's explore`} />
+                <TouchableOpacity style={globalStyle.icon}>
+                  <FontAwesomeIcon
+                    icon={faEnvelope}
+                    size={24}
+                    color="#898DAE"
                   />
-                )}
+                  <View style={globalStyle.iconNumberContainer}>
+                    <Text style={globalStyle.messageNumber}>2</Text>
+                  </View>
+                </TouchableOpacity>
+              </View>
+              <View style={globalStyle.userStoriesContainer}>
+                <FlatList
+                  onEndReachedThreshold={0.9}
+                  horizontal={true}
+                  keyExtractor={(item, index) => String(index)}
+                  showsHorizontalScrollIndicator={false}
+                  data={UserStoriesRenderedData}
+                  onEndReached={() => {
+                    // TODO: Move to separate function
+                    console.log(
+                      `STORIES REACHED END DATA ${UserStoriesRenderedData.length}`,
+                    );
+                    if (isLoadingUserStories) {
+                      console.log('Already loading');
+                      return;
+                    }
+                    setIsLoadingUserStories(true);
+                    const newData = pagination(
+                      userStories,
+                      page + 1,
+                      userStoriesPageSize,
+                    );
+                    console.log(`newData.length = ${newData.length}`);
+                    if (newData.length > 0) {
+                      console.log(`Got some data: ${newData.length}`);
+                      setPage(page + 1);
+                      setUserStoriesRenderedData(prev => [...prev, ...newData]);
+                    }
+                    setIsLoadingUserStories(false);
+                  }}
+                  renderItem={({item}) => (
+                    <UserStory
+                      firstName={item.firstName}
+                      profileImage={item.profileImage}
+                    />
+                  )}
+                />
+              </View>
+            </>
+          }
+          onEndReachedThreshold={0.9}
+          onEndReached={() => {
+            // TODO: Move to separate function
+            if (isLoadingUserPosts) {
+              console.log('Already loading posts');
+              return;
+            }
+            setIsLoadingUserPosts(true);
+            const newData = pagination(
+              userPosts,
+              pagePosts + 1,
+              userPostsPageSize,
+            );
+            console.log(`POSTS newData.length = ${newData.length}`);
+            console.log(newData);
+            if (newData.length > 0) {
+              console.log(`Got some posts data: ${newData.length}`);
+              setPagePosts(pagePosts + 1);
+              setUserPostsRenderedData(prev => [...prev, ...newData]);
+            }
+            setIsLoadingUserPosts(false);
+          }}
+          keyExtractor={(item, index) => String(index)}
+          data={UserPostsRenderedData}
+          renderItem={({item}) => (
+            <View style={globalStyle.userPostsContainer}>
+              <UserPost
+                firstName={item.firstName}
+                lastName={item.lastName}
+                location={item.location}
+                likes={item.likes}
+                comments={item.comments}
+                bookmarks={item.bookmarks}
+                image={item.image}
               />
             </View>
-          </>
-        }
-        onEndReachedThreshold={0.9}
-        onEndReached={() => {
-          // TODO: Move to separate function
-          if (isLoadingUserPosts) {
-            console.log('Already loading posts');
-            return;
-          }
-          setIsLoadingUserPosts(true);
-          const newData = pagination(
-            userPosts,
-            pagePosts + 1,
-            userPostsPageSize,
-          );
-          console.log(`POSTS newData.length = ${newData.length}`);
-          console.log(newData);
-          if (newData.length > 0) {
-            console.log(`Got some posts data: ${newData.length}`);
-            setPagePosts(pagePosts + 1);
-            setUserPostsRenderedData(prev => [...prev, ...newData]);
-          }
-          setIsLoadingUserPosts(false);
-        }}
-        keyExtractor={(item, index) => String(index)}
-        data={UserPostsRenderedData}
-        renderItem={({item}) => (
-          <View style={globalStyle.userPostsContainer}>
-            <UserPost
-              firstName={item.firstName}
-              lastName={item.lastName}
-              location={item.location}
-              likes={item.likes}
-              comments={item.comments}
-              bookmarks={item.bookmarks}
-              image={item.image}
-            />
-          </View>
-        )}
-      />
-    </SafeAreaView>
+          )}
+        />
+      </SafeAreaView>
+    </NavigationContainer>
   );
 };
 
