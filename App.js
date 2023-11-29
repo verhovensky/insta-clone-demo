@@ -6,6 +6,7 @@ import {
   Text,
   TouchableOpacity,
   View,
+  StatusBar,
 } from 'react-native';
 import {getFontFamily} from './assets/fonts/helper';
 import Title from './components/Title/Title';
@@ -161,6 +162,7 @@ const App = () => {
 
   return (
     <SafeAreaView>
+      <StatusBar backgroundColor="black" barStyle="light-content" />
       <FlatList
         ListHeaderComponent={
           <>
