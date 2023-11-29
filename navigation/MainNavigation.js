@@ -1,6 +1,7 @@
 import {createStackNavigator} from '@react-navigation/stack';
 import Home from '../screens/Home/Home';
 import {Routes} from './Routes';
+import Profile from '../screens/Profile/Profile';
 const Stack = createStackNavigator();
 
 const MainNavigation = () => {
@@ -9,6 +10,7 @@ const MainNavigation = () => {
       screenOptions={{header: () => null}}
       initialRouteName="Home">
       <Stack.Screen name={Routes.Home} component={Home} />
+      <Stack.Screen name={Routes.Profile} component={Profile} />
     </Stack.Navigator>
   );
 };

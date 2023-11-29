@@ -1,4 +1,3 @@
-import React from 'react';
 import {useState, useEffect} from 'react';
 import {
   FlatList,
@@ -16,8 +15,9 @@ import style from './style';
 import UserStory from '../../components/userStory/userStory';
 import UserPost from '../../components/UserPost/UserPost';
 import globalStyle from '../../styles/globalStyle';
+import {Routes} from '../../navigation/Routes';
 
-const Home = () => {
+const Home = ({navigation}) => {
   // User Stories properties
   const userStoriesPageSize = 4;
   const [page, setPage] = useState(1); // because - 1
@@ -168,7 +168,11 @@ const Home = () => {
           <>
             <View style={style.header}>
               <Title title={`Let's explore`} />
-              <TouchableOpacity style={style.icon}>
+              <TouchableOpacity
+                style={style.icon}
+                onPress={() => {
+                  navigation.navigate(Routes.Profile);
+                }}>
                 <FontAwesomeIcon icon={faEnvelope} size={24} color="#898DAE" />
                 <View style={style.iconNumberContainer}>
                   <Text style={style.messageNumber}>2</Text>
