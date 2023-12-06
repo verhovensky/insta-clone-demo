@@ -59,3 +59,7 @@ buck-out/
 
 # Testing
 /coverage
+
+# (Android) Build instructions
+build.txt
+insta_clone_app.keystore
