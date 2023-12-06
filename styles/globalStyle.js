@@ -4,6 +4,9 @@ const globalStyle = StyleSheet.create({
   backgoundWhite: {
     backgroundColor: 'white',
   },
+  flexGrow: {
+    flexGrow: 1,
+  },
 });
 
 export default globalStyle;
