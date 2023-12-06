@@ -16,16 +16,4 @@ const MainMenuNavigation = () => {
   );
 };
 
-const MainNavigation = () => {
-  return (
-    <Stack.Navigator
-      screenOptions={{headerShown: false}}
-      initialRouteName="Home">
-      <Stack.Screen name={'Drawer'} component={MainMenuNavigation} />
-      <Stack.Screen name={Routes.Home} component={Home} />
-      <Stack.Screen name={Routes.Profile} component={Profile} />
-    </Stack.Navigator>
-  );
-};
-
-export default MainNavigation;
+export default MainMenuNavigation;
